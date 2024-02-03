@@ -10,18 +10,18 @@ const url = "http://localhost:8071"
 
 bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, "Selamat datang penyefong bot")
-        .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+        .then(() => console.log("[/START] Message sent..."))
         .catch(err => {
-            console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+            console.error("[/START] Failed sent message:", err.message)
         })
 })
 
 bot.onText(/\/redeploydashboard/, async (msg) => {
     try {
         bot.sendMessage(msg.chat.id, "Sabar masih loading...")
-            .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+            .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
             .catch(err => {
-                console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+                console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
             })
 
 
@@ -29,17 +29,17 @@ bot.onText(/\/redeploydashboard/, async (msg) => {
             const res = await axios.get(`${url}/pm2/deploy/sipwan-dashboard`)
 
             bot.sendMessage(msg.chat.id, res.data.message)
-                .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+                .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
                 .catch(err => {
-                    console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+                    console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
                 })
         })
     } catch (error) {
-        console.error("[TELEGRAM BOT] Error:", error)
+        console.error("[/REDEPLOY DASHBOARD] Error:", error)
         bot.sendMessage(msg.chat.id, "Gagal cong, server lu koid kali")
-            .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+            .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
             .catch(err => {
-                console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+                console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
             })
     }
 })
@@ -65,16 +65,16 @@ bot.onText(/\/pm2list/, async (msg) => {
         `
         })
         bot.sendMessage(msg.chat.id, message, {parse_mode: "Markdown"})
-            .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+            .then(() => console.log("[/PM2 LIST] Message sent..."))
             .catch(err => {
-                console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+                console.error("[/PM2 LIST] Failed sent message:", err.message)
             })
     } catch (err) {
-        console.error("[TELEGRAM BOT] Error:", err)
+        console.error("[/PM2 LIST] Error:", err)
         bot.sendMessage(msg.chat.id, "Gagal cong, server lu koid kali")
-            .then(() => console.log("[TELEGRAM BOT] Message sent..."))
+            .then(() => console.log("[/PM2 LIST] Message sent..."))
             .catch(err => {
-                console.error("[TELEGRAM BOT] Failed sent message:", err.message)
+                console.error("[/PM2 LIST] Failed sent message:", err.message)
             })
     }
 })
