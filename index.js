@@ -28,9 +28,9 @@ bot.onText(/\/redeploydashboard/, (msg) => {
         axios.get(`${url}/pm2/deploy/sipwan-dashboard`)
             .then(res => {
                 bot.sendMessage(msg.chat.id, res.data.message)
-                    .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
+                    .then(() => console.log("[/REDEPLOY DASHBOARD COMPLETE] Message sent..."))
                     .catch(err => {
-                        console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
+                        console.error("[/REDEPLOY DASHBOARD COMPLETE] Failed sent message:", err.message)
                     })
             })
     } catch (error) {
