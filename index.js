@@ -96,9 +96,8 @@ bot.onText(/\/dockerps/, async (msg) => {
         }
         list.forEach(v => {
             message += `
-            ${v.name}
+            ${v.image}
             - id: ${v.id}
-            - image: ${v.image}
             - state: ${v.state}
             - status: ${v.status}
         `
