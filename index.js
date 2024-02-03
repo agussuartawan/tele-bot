@@ -5,7 +5,7 @@ import axios from "axios"
 const app = express()
 const port = 8072
 
-const bot = new TelegramBot("6834034269:AAGXku0CXKD1lEcZUgffEaaeoFq2m2d-IKM")
+const bot = new TelegramBot("6834034269:AAGXku0CXKD1lEcZUgffEaaeoFq2m2d-IKM", {polling: true})
 const url = "http://localhost:8071"
 
 bot.onText(/\/start/, (msg) => {
