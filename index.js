@@ -16,7 +16,7 @@ bot.onText(/\/start/, (msg) => {
         })
 })
 
-bot.onText(/\/redeploydashboard/, async (msg) => {
+bot.onText(/\/redeploydashboard/, (msg) => {
     try {
         bot.sendMessage(msg.chat.id, "Sabar masih loading...")
             .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
@@ -25,15 +25,14 @@ bot.onText(/\/redeploydashboard/, async (msg) => {
             })
 
 
-        await (async () => {
-            const res = await axios.get(`${url}/pm2/deploy/sipwan-dashboard`)
-
-            bot.sendMessage(msg.chat.id, res.data.message)
-                .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
-                .catch(err => {
-                    console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
-                })
-        })
+        axios.get(`${url}/pm2/deploy/sipwan-dashboard`)
+            .then(res => {
+                bot.sendMessage(msg.chat.id, res.data.message)
+                    .then(() => console.log("[/REDEPLOY DASHBOARD] Message sent..."))
+                    .catch(err => {
+                        console.error("[/REDEPLOY DASHBOARD] Failed sent message:", err.message)
+                    })
+            })
     } catch (error) {
         console.error("[/REDEPLOY DASHBOARD] Error:", error)
         bot.sendMessage(msg.chat.id, "Gagal cong, server lu koid kali")
