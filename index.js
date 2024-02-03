@@ -16,7 +16,7 @@ bot.onText(/\/start/, (msg) => {
         })
 })
 
-bot.onText(/\/redeploydashboard/, (msg) => {
+bot.onText(/\/redeploydashboard/, async (msg) => {
     try {
         bot.sendMessage(msg.chat.id, "Sabar masih loading...")
             .then(() => console.log("[TELEGRAM BOT] Message sent..."))
@@ -25,7 +25,7 @@ bot.onText(/\/redeploydashboard/, (msg) => {
             })
 
 
-        (async () => {
+        await (async () => {
             const res = await axios.get(`${url}/pm2/deploy/sipwan-dashboard`)
 
             bot.sendMessage(msg.chat.id, res.data.message)
