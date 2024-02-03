@@ -16,6 +16,14 @@ bot.onText(/\/start/, (msg) => {
         })
 })
 
+bot.onText(/\/seememe/, (msg) => {
+    bot.sendPhoto(msg.chat.id, "https://static.wikia.nocookie.net/spongebob/images/b/b3/Krusty_Towers_019.png/revision/latest/scale-to-width-down/1200?cb=20191211221758")
+        .then(() => console.log("[/SEE MEME] Message sent..."))
+        .catch(err => {
+            console.error("[/SEE MEME] Failed sent message:", err.message)
+        })
+})
+
 bot.onText(/\/redeploydashboard/, (msg) => {
     try {
         bot.sendMessage(msg.chat.id, "Sabar masih loading...")
