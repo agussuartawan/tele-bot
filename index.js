@@ -86,6 +86,38 @@ bot.onText(/\/pm2list/, async (msg) => {
     }
 })
 
+bot.onText(/\/dockerps/, async (msg) => {
+    try {
+        const res = await axios.get(`${url}/docker/ps`)
+        const list = res.data
+        let message = ""
+        if (list.length === 0) {
+            message = "Ga ada service yang lagi running cong!"
+        }
+        list.forEach(v => {
+            message += `
+            ${v.name}
+            - id: ${v.id}
+            - image: ${v.image}
+            - state: ${v.state}
+            - status: ${v.status}
+        `
+        })
+        bot.sendMessage(msg.chat.id, message, {parse_mode: "Markdown"})
+            .then(() => console.log("[/DOCKER PS] Message sent..."))
+            .catch(err => {
+                console.error("[/DOCKER PS] Failed sent message:", err.message)
+            })
+    } catch (err) {
+        console.error("[/DOCKER PS] Error:", err)
+        bot.sendMessage(msg.chat.id, "Gagal cong, server lu koid kali")
+            .then(() => console.log("[/DOCKER PS] Message sent..."))
+            .catch(err => {
+                console.error("[/DOCKER PS] Failed sent message:", err.message)
+            })
+    }
+})
+
 app.listen(port, () => {
     console.log(`[APP] Server started on port ${port}`)
 })
