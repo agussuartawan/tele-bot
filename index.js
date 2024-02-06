@@ -8,7 +8,7 @@ const port = 8072
 const bot = new TelegramBot("6834034269:AAGXku0CXKD1lEcZUgffEaaeoFq2m2d-IKM", {
     polling: true,
 })
-const url = "http://8.215.27.151:8071"
+const url = "http://localhost:8071"
 
 bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, "Selamat datang penyefong bot")
