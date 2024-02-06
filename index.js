@@ -8,7 +8,7 @@ const port = 8072
 const bot = new TelegramBot("6834034269:AAGXku0CXKD1lEcZUgffEaaeoFq2m2d-IKM", {
     polling: true,
 })
-const url = "http://localhost:8071"
+const url = "http://8.215.27.151:8071"
 
 bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, "Selamat datang penyefong bot")
@@ -83,16 +83,7 @@ bot.onText(/\/pm2list/, async (msg) => {
                 })
         }
         list.forEach((v) => {
-            const message = `
-                name: ${v.name}
-                id: ${v.pmId}
-                pid: ${v.pid}
-                status: ${v.status}
-                memory: ${v.memory / 1000000} MB
-                cpu: ${v.cpu}%
-                lifetime: ${v.lifetime}
-                restart: ${v.restart}
-            `
+            const message = `name: ${v.name}\nid: ${v.pmId}\npid: ${v.pid}\nstatus: ${v.status}\nmemory: ${v.memory / 1000000} MB\ncpu: ${v.cpu}%\nlifetime: ${v.lifetime}\nrestart: ${v.restart}`
             bot.sendMessage(msg.chat.id, message, { parse_mode: "Markdown" })
                 .then(() => console.log("[/PM2 LIST] Message sent..."))
                 .catch((err) => {
@@ -128,12 +119,7 @@ bot.onText(/\/dockerps/, async (msg) => {
                 })
         }
         list.forEach((v) => {
-            const message = `
-                ${v.image}
-                - id: ${v.id}
-                - state: ${v.state}
-                - status: ${v.status}
-            `
+            const message = `name: ${v.image}\nid: ${v.id}\nstate: ${v.state}\nstatus: ${v.status}`
             bot.sendMessage(msg.chat.id, message, { parse_mode: "Markdown" })
                 .then(() => console.log("[/DOCKER PS] Message sent..."))
                 .catch((err) => {
